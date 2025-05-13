@@ -1,14 +1,16 @@
 import 'dart:io';
 
-
 import 'package:e_comrece_app/core/my_theme/my_theme.dart';
-import 'package:e_comrece_app/ui/Auth/login/Login_screen.dart';
-import 'package:e_comrece_app/ui/Auth/register/register_screen.dart';
-import 'package:e_comrece_app/ui/splash/splash_screen.dart';
+import 'package:e_comrece_app/splash_screen.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 
+import 'auth/ui/login/Login_screen.dart';
+import 'auth/ui/register/register_screen.dart';
+
 import 'core/Di/di.dart';
+import 'home/home_screen/home_screen.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -43,13 +45,12 @@ class _ECommerceAppState extends State<ECommerceApp> {
         child: MaterialApp(
           theme: MyTheme.myTheme,
           debugShowCheckedModeBanner: false,
-          initialRoute: SplashScreen.routName,
+          initialRoute: HomeScreen.routName,
           routes: {
             RegisterScreen.routName: (context) => const RegisterScreen(),
             LoginScreen.routName: (context) => const LoginScreen(),
-
+            HomeScreen.routName: (context) => HomeScreen(),
             SplashScreen.routName: (context) => const SplashScreen(),
-      
           },
         ),
       ),
