@@ -94,13 +94,4 @@ class ProductTab extends StatelessWidget {
     );
   }
 }
-/* InkWell(onTap: (){}, child: Padding(
-                    padding: EdgeInsets.only(right: 20.w),
-                    child: Badge(
-                      label:Text(state.addToCartEntity.numOfCartItems.toString()) ,
-                      child: Image.asset(
-                          "lib/core/my_assets/images/shoppingcart.png",
-                          height: 30.h,
-                          width: 30.w),
-                    ),
-                  ));*/
+
