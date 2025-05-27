@@ -4,15 +4,20 @@ part of 'home_tab_view_model_cubit.dart';
 sealed class HomeTabViewModelState {}
 
 final class HomeTabViewModelInitial extends HomeTabViewModelState {}
- class SuccessState extends HomeTabViewModelState{
- final List<Category> allCategories;
+
+class SuccessState extends HomeTabViewModelState {
+  final List<Category> allCategories;
   SuccessState({required this.allCategories});
 }
-class ErrorState extends HomeTabViewModelState{
- final String message;
+
+class ErrorState extends HomeTabViewModelState {
+  final String message;
   ErrorState({required this.message});
 }
-class LoadingState extends HomeTabViewModelState{
 
+class LoadingState extends HomeTabViewModelState {}
+
+class SuccessBrandsState extends HomeTabViewModelState {
+  final List<Brand> allBrands;
+  SuccessBrandsState({required this.allBrands});
 }
-

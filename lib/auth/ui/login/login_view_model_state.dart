@@ -5,8 +5,9 @@ sealed class LoginViewModelState {}
 
 final class LoginViewModelInitial extends LoginViewModelState {}
 final class LoginViewModelSuccess extends LoginViewModelState {
-  String message;
-  LoginViewModelSuccess({required this.message});
+
+  LoginResp? loginResp;
+  LoginViewModelSuccess({required this.loginResp});
 }
 final class LoginViewModelLoading extends LoginViewModelState {
   String message;

@@ -1,7 +1,11 @@
 import 'dart:io';
 
+import 'package:e_comrece_app/auth/ui/login/login_view_model_cubit.dart';
 import 'package:e_comrece_app/core/my_theme/my_theme.dart';
+import 'package:e_comrece_app/home/product_tab/ui/widgets/cart_screen.dart';
+import 'package:e_comrece_app/home/product_tab/ui/widgets/product_details_widget.dart';
 import 'package:e_comrece_app/splash_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
@@ -22,38 +26,40 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
+
   configureDependencies();
-  runApp(const ECommerceApp());
+  runApp( ECommerceApp());
 }
 
-class ECommerceApp extends StatefulWidget {
-  const ECommerceApp({super.key});
+class ECommerceApp extends StatelessWidget {
 
-  @override
-  State<ECommerceApp> createState() => _ECommerceAppState();
-}
+   ECommerceApp({super.key});
 
-class _ECommerceAppState extends State<ECommerceApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(430, 932),
       splitScreenMode: true,
       minTextAdapt: true,
-      builder: (context, child) => SafeArea(
-        child: MaterialApp(
-          theme: MyTheme.myTheme,
-          debugShowCheckedModeBanner: false,
-          initialRoute: HomeScreen.routName,
-          routes: {
-            RegisterScreen.routName: (context) => const RegisterScreen(),
-            LoginScreen.routName: (context) => const LoginScreen(),
-            HomeScreen.routName: (context) => HomeScreen(),
-            SplashScreen.routName: (context) => const SplashScreen(),
-          },
-        ),
-      ),
+      builder: (context, child) =>
+          SafeArea(
+            child: MaterialApp(
+              theme: MyTheme.myTheme,
+              debugShowCheckedModeBanner: false,
+              initialRoute: SplashScreen.routName,
+              routes: {
+                RegisterScreen.routName: (context) => const RegisterScreen(),
+                LoginScreen.routName: (context) => const LoginScreen(),
+                HomeScreen.routName: (context) => HomeScreen(),
+                SplashScreen.routName: (context) => const SplashScreen(),
+                ProductDetailsWidget.routName: (context) =>
+                const ProductDetailsWidget(),
+                CartScreen.routName: (context) => CartScreen(),
+              },
+            ),
+          ),
     );
   }
 }

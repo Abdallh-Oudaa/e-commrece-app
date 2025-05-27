@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:e_comrece_app/auth/data/model/response/login_resp.dart';
+import 'package:e_comrece_app/core/shared_prefs/shared_prefs.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
@@ -8,8 +10,7 @@ import '../../domin/repository_contract/auth_repository_contract.dart';
 
 
 part 'login_view_model_state.dart';
-
-@Injectable()
+@injectable
 class LoginViewModelCubit extends Cubit<LoginViewModelState> {
   AuthRepositoryContract authRepositoryContract;
   final TextEditingController emailAddress = TextEditingController();
@@ -18,10 +19,10 @@ class LoginViewModelCubit extends Cubit<LoginViewModelState> {
 
   bool isVisible = false;
   var formKey = GlobalKey<FormState>();
-  LoginViewModelCubit({required this.authRepositoryContract})
+  @factory LoginViewModelCubit({required this.authRepositoryContract})
       : super(LoginViewModelInitial());
   void login() async {
-    if (formKey.currentState!.validate() == true) {
+
       emit(LoginViewModelLoading(message: "loading"));
       try {
         var response =
@@ -29,11 +30,14 @@ class LoginViewModelCubit extends Cubit<LoginViewModelState> {
         if (response?.message != "success") {
           emit(LoginViewModelError(message: response?.message ?? ""));
         } else {
-          emit(LoginViewModelSuccess(message: response?.message ?? ""));
+
+
+          emit(LoginViewModelSuccess(loginResp: response));
         }
       } catch (e) {
+
         emit(LoginViewModelError(message: e.toString()));
       }
     }
   }
-}
+
